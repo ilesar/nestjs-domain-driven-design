@@ -66,5 +66,12 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "_moduleAliases": {
+    "@application": "dist/application",
+    "@infrastructure": "dist/infrastructure",
+    "@domain": "dist/domain",
+    "@api": "dist/infrastructure/api",
+    "@enum": "dist/domain/enum"
   }
 }
