@@ -1,0 +1,11 @@
+{
+  "tags": [
+    "main"
+  ],
+  "exports": [],
+  "imports": [
+    "application",
+    "domain",
+    "infrastructure"
+  ]
+}

@@ -4,29 +4,9 @@
   ],
   "exports": [
     {
-      "modules": "./**/*.database.module",
-      "accessibleTo": ["domain", "api"]
-    },
-    {
-      "modules": "./**/*.database.manager",
-      "accessibleTo": ["domain"]
-    },
-    {
-      "modules": "./**/*.entity",
-      "accessibleTo": ["domain", "infrastructure", "api"]
-    },
-    {
-      "modules": "./ormconfig",
-      "accessibleTo": ["infrastructure"]
-    },
-    {
-      "modules": "./database.module",
-      "accessibleTo": ["infrastructure"]
+      "modules": "./models/domain-models.module",
+      "accessibleTo": ["domainServices", "domain"]
     }
   ],
-  "imports": [
-    "api",
-    "domain",
-    "infrastructure"
-  ]
+  "imports": []
 }
