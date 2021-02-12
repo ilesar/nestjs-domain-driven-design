@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ApiModule } from '@api/api.module';
+import { GraphqlModule } from '@infrastructure/graphql/api.module';
 import { DatabaseModule } from '@infrastructure/database/database.module';
 
 @Module({
-  imports: [ApiModule, DatabaseModule],
+  imports: [GraphqlModule, DatabaseModule],
   controllers: [],
   providers: [],
 })
