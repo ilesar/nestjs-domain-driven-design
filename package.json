@@ -30,6 +30,7 @@
     "@nestjs/platform-express": "^7.5.1",
     "nest-schedule": "^0.6.4",
     "nestjs-config": "^1.4.7",
+    "nestjs-enlighten": "0.0.8-beta",
     "nodemailer": "^6.4.18",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
