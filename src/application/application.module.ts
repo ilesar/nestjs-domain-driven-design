@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
+import { DomainModule } from '@domain/domain.module';
 
 @Module({
-  imports: [],
-  controllers: [],
+  imports: [DomainModule],
   providers: [],
 })
 export class ApplicationModule {}
