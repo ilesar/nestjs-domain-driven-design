@@ -8,4 +8,4 @@ import { InfrastructureModule } from '@infrastructure/infrastructure.module';
   controllers: [DomainModule, ApplicationModule, InfrastructureModule],
   providers: [],
 })
-export class MainModule {}
+export class CoreModule {}
