@@ -4,8 +4,8 @@ import { ApplicationModule } from '@application/application.module';
 import { InfrastructureModule } from '@infrastructure/infrastructure.module';
 
 @Module({
-  imports: [],
-  controllers: [DomainModule, ApplicationModule, InfrastructureModule],
+  imports: [DomainModule, ApplicationModule, InfrastructureModule],
   providers: [],
+  exports: [],
 })
 export class CoreModule {}
