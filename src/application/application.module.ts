@@ -7,10 +7,21 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 import { StatusMonitorModule } from 'nest-status-monitor';
 import { DriverType, StorageModule } from '@codebrew/nestjs-storage';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
     ConfigModule.load(path.resolve(__dirname, 'config', '**/!(*.d).{ts,js}')),
+    TypeOrmModule.forRoot({
+      type: 'mariadb',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'root',
+      database: 'test',
+      entities: [],
+      synchronize: true,
+    }),
     MailerModule.forRoot({
       transport: 'smtps://user@domain.com:pass@smtp.domain.com',
       defaults: {
