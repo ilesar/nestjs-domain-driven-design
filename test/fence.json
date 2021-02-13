@@ -1,9 +1,0 @@
-{
-  "tags": [
-    "testing"
-  ],
-  "exports": [],
-  "imports": [
-    "application"
-  ]
-}
