@@ -6,6 +6,7 @@ import { ScheduleModule } from 'nest-schedule';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 import { StatusMonitorModule } from 'nest-status-monitor';
+import { DriverType, StorageModule } from '@codebrew/nestjs-storage';
 
 @Module({
   imports: [
@@ -20,6 +21,17 @@ import { StatusMonitorModule } from 'nest-status-monitor';
         adapter: new PugAdapter(),
         options: {
           strict: true,
+        },
+      },
+    }),
+    StorageModule.forRoot({
+      default: 'local',
+      disks: {
+        local: {
+          driver: DriverType.LOCAL,
+          config: {
+            root: process.cwd(),
+          },
         },
       },
     }),
