@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { GraphqlModule } from '@infrastructure/graphql/api.module';
 import { DatabaseModule } from '@infrastructure/database/database.module';
+import { GraphqlModule } from '@infrastructure/graphql/graphql.module';
 
 @Module({
   imports: [GraphqlModule, DatabaseModule],

@@ -4,7 +4,7 @@
   ],
   "exports": [
     {
-      "modules": "@infrastructure/infrastructure.module",
+      "modules": "*",
       "accessibleTo": ["main"]
     }
   ],

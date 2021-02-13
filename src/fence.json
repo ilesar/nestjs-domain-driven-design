@@ -4,8 +4,8 @@
   ],
   "exports": [],
   "imports": [
+    "infrastructure",
     "application",
-    "domain",
-    "infrastructure"
+    "domain"
   ]
 }

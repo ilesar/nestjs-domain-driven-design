@@ -4,8 +4,8 @@
   ],
   "exports": [
     {
-      "modules": "@application/application.module",
-      "accessibleTo": ["main", "infrastructure"]
+      "modules": "*",
+      "accessibleTo": ["main", "infrastructure", "testing"]
     }
   ],
   "imports": [

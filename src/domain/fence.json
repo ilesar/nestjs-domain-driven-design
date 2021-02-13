@@ -4,16 +4,8 @@
   ],
   "exports": [
     {
-      "modules": "@domain/domain.module",
+      "modules": "*",
       "accessibleTo": ["main", "application", "infrastructure"]
-    },
-    {
-      "modules": "@domain/**/*",
-      "accessibleTo": ["main", "application", "infrastructure"]
-    },
-
-    {
-      "modules": "*"
     }
   ],
   "imports": []
