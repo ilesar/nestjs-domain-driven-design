@@ -21,7 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "good:fences": "gf",
     "pipeline:ci": "npm run build && npm run lint && npm run good:fences",
-    "migration:generate": "npx typeorm -f dist/database/ormconfig.js -d src/database/migrations migration:generate",
+    "migration:generate": "npx typeorm -f dist/application/config/database.config.js -d src/database/migrations migration:generate -n",
     "migration:run": "npx typeorm -f dist/database/ormconfig.js migration:run",
     "migration:revert": "npx typeorm -f dist/database/ormconfig.js migration:revert",
     "db:drop": "npx typeorm -f dist/database/ormconfig.js schema:drop",
@@ -48,7 +48,8 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
-    "typeorm": "^0.2.31"
+    "typeorm": "^0.2.31",
+    "typeorm-naming-strategies": "^2.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.5.1",

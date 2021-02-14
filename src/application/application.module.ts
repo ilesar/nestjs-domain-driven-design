@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { DomainModule } from '@domain/domain.module';
-import { ConfigModule } from 'nestjs-config';
+import { ConfigModule, ConfigService } from 'nestjs-config';
 import * as path from 'path';
 import { ScheduleModule } from 'nest-schedule';
 import { MailerModule } from '@nestjs-modules/mailer';
@@ -12,15 +12,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     ConfigModule.load(path.resolve(__dirname, 'config', '**/!(*.d).{ts,js}')),
-    TypeOrmModule.forRoot({
-      type: 'mariadb',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'test',
-      entities: [],
-      synchronize: true,
+    TypeOrmModule.forRootAsync({
+      useFactory: (config: ConfigService) => config.get('database.config'),
+      inject: [ConfigService],
     }),
     MailerModule.forRoot({
       transport: 'smtps://user@domain.com:pass@smtp.domain.com',
