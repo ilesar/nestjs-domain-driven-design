@@ -12,6 +12,7 @@ import * as mailerConfig from '@application/config/mailer.config';
 import * as graphQLConfig from '@application/config/graphQL.config';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
+import { AuthModule } from '@application/auth/auth.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { GraphQLModule } from '@nestjs/graphql';
     ScheduleModule.register(),
     DomainModule,
     GraphQLModule.forRootAsync(graphQLConfig),
+    AuthModule,
   ],
   providers: [],
   exports: [],

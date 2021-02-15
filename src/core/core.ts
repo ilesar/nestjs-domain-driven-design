@@ -10,7 +10,7 @@ async function bootstrap() {
       projectName: 'project',
     }),
   });
-  app.useGlobalFilters(new NestEnlighten({ theme: 'theme-dark' }));
+  // app.useGlobalFilters(new NestEnlighten({ theme: 'theme-dark' }));
   await app.listen(3000);
 }
 bootstrap();
