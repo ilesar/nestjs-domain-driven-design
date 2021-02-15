@@ -4,7 +4,6 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-console.log(process.env.DATABASE_HOST);
 const databaseConfig: ConnectionOptions = {
   type: 'mariadb',
   host: process.env.DATABASE_HOST,

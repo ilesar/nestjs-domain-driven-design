@@ -45,6 +45,7 @@
     "@nestjs/platform-socket.io": "^7.6.12",
     "@nestjs/typeorm": "^7.1.5",
     "@slynova/flydrive": "^1.0.3",
+    "apollo-server-express": "^2.21.0",
     "class-transformer": "^0.3.2",
     "class-validator": "^0.13.1",
     "dataloader": "^2.0.0",

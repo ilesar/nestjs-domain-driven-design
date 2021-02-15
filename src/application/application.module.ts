@@ -5,23 +5,26 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { StatusMonitorModule } from 'nest-status-monitor';
 import { StorageModule } from '@codebrew/nestjs-storage';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import databaseConfig from '@application/config/database.config';
-import statusMonitorConfig from '@application/config/status-monitor.config';
-import storageConfig from '@application/config/storage.config';
-import mailerConfig from '@application/config/mailer.config';
+import * as databaseConfig from '@application/config/database.config';
+import * as statusMonitorConfig from '@application/config/status-monitor.config';
+import * as storageConfig from '@application/config/storage.config';
+import * as mailerConfig from '@application/config/mailer.config';
+import * as graphQLConfig from '@application/config/graphQL.config';
 import { ConfigModule } from '@nestjs/config';
+import { GraphQLModule } from '@nestjs/graphql';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    TypeOrmModule.forRootAsync(databaseConfig),
+    TypeOrmModule.forRoot(databaseConfig),
     MailerModule.forRoot(mailerConfig),
     StorageModule.forRoot(storageConfig),
     StatusMonitorModule.setUp(statusMonitorConfig),
     ScheduleModule.register(),
     DomainModule,
+    GraphQLModule.forRootAsync(graphQLConfig),
   ],
   providers: [],
   exports: [],
