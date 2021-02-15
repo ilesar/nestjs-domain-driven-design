@@ -1,0 +1,7 @@
+entity: TodoItemEntity
+items:
+  testItem{1..5}:
+    title: 'testitem'
+    completed: false
+    created: '2021-02-20T09:00:00.00Z'
+    updated: '2021-02-20T09:00:00.00Z'
