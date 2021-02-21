@@ -19,7 +19,6 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "good:fences": "gf",
     "pipeline:ci": "npm run build && npm run lint && npm run good:fences",
     "migration:generate": "npx typeorm -f dist/application/config/database.config.js -d src/infrastructure/database/migrations migration:generate -n",
     "migration:run": "npx typeorm -f dist/application/config/database.config.js migration:run",
@@ -28,7 +27,8 @@
     "fixtures:load": "npx fixtures ./src/infrastructure/database/fixtures -c ./dist/application/config/database.config.js",
     "fixtures:load_new": "npx fixtures ./src/infrastructure/database/fixtures -c dist/application/config/database.config.js",
     "seeder:seed": "node dist/database/seeder/seeder.js",
-    "db:recreate": "yarn db:drop && yarn migration:run && yarn fixtures:load"
+    "db:recreate": "yarn db:drop && yarn migration:run && yarn fixtures:load",
+    "good:fences": "gf"
   },
   "dependencies": {
     "@codebrew/nestjs-storage": "^0.1.4",

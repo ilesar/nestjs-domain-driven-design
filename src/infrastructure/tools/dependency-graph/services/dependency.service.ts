@@ -5,7 +5,6 @@ import { TreeModel } from '@infrastructure/tools/dependency-graph/model/tree.mod
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { InternalCoreModule } from '@nestjs/core/injector/internal-core-module';
-import { CoreModule } from '../../../../core/core.module';
 import { ConfigHostModule } from '@nestjs/config/dist/config-host.module';
 import { TypeOrmCoreModule } from '@nestjs/typeorm/dist/typeorm-core.module';
 import { MailerCoreModule } from '@nestjs-modules/mailer/dist/mailer-core.module';
@@ -14,8 +13,6 @@ import { ScheduleModule } from 'nest-schedule';
 
 export class DependencyService {
   private applicationModule: Module;
-
-  private ignoredRootModules: string[] = [];
 
   private ignoredModules: string[] = [
     ConfigModule.name,
@@ -28,23 +25,23 @@ export class DependencyService {
     ScheduleModule.name,
   ];
 
-  constructor(private readonly application: INestApplication) {
+  constructor(
+    private readonly application: INestApplication,
+    appModuleName: string,
+  ) {
     const container = this.application.get(ModulesContainer);
     const moduleWrappers = Array.from(container.values());
     this.applicationModule = moduleWrappers.find(
-      (moduleWrapper) => moduleWrapper.metatype.name === CoreModule.name,
+      (moduleWrapper) => moduleWrapper.metatype.name === appModuleName,
     );
 
     if (this.applicationModule === undefined) {
-      throw Error('Core module missing');
+      throw Error(`${appModuleName} is not found`);
     }
   }
 
   generateDependencyTree(): TreeModel {
-    const tree = this.buildTree(this.applicationModule);
-    this.cleanIgnoredRootNodes(tree);
-
-    return tree;
+    return this.buildTree(this.applicationModule);
   }
 
   private buildTree(module: Module): TreeModel {
@@ -67,14 +64,6 @@ export class DependencyService {
       return !this.ignoredModules.find(
         (ignoredModuleName: string) =>
           ignoredModuleName === importedModule.metatype.name,
-      );
-    });
-  }
-
-  private cleanIgnoredRootNodes(tree: TreeModel) {
-    tree.children = tree.children.filter((childNode: TreeModel) => {
-      return !this.ignoredRootModules.find(
-        (ignoredModuleName: string) => ignoredModuleName === childNode.name,
       );
     });
   }
