@@ -7,11 +7,11 @@ import { AccessTokenDto } from '@api/base/outputs/access-token.dto';
 import { UserDto } from '@api/base/outputs/user.dto';
 import { RestController } from '@application/decorators/rest-controller.decorator';
 
-@RestController('authorization', '🔐')
+@RestController('auth', '🔐')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('auth/login')
+  @Post('login')
   async login(@Request() request): Promise<AccessTokenDto> {
     return this.authService.login(request.body);
   }

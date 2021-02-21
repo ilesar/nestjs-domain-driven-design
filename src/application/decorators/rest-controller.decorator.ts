@@ -11,7 +11,6 @@ export function RestController(
     controllerName.charAt(0).toUpperCase() + controllerName.slice(1);
 
   if (controllerIcon && stringHasOnlyEmojis(controllerIcon)) {
-    console.log(controllerIcon.length);
     prettyControllerName = `${controllerIcon.slice(
       0,
       MAXIMUM_EMOJIS * 2,

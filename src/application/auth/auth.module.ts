@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './services/auth.service';
 import { PassportModule } from '@nestjs/passport';
-import { DomainServicesModule } from '@domain/services/domain-services.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtStrategy } from '@application/auth/strategies/jwt.strategy';
 import { GraphqlAuthGuard } from '@application/auth/guards/graphql-auth-guard.service';
+import { DomainModule } from '@domain/domain.module';
 
 @Module({
   imports: [
-    DomainServicesModule,
+    DomainModule,
     PassportModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
