@@ -10,6 +10,8 @@ import { CoreModule } from '../../../../core/core.module';
 export class DependencyService {
   private applicationModule: Module;
 
+  private ignoredRootModules: string[] = [];
+
   private ignoredModules: string[] = [
     ConfigModule.name,
     TypeOrmModule.name,
@@ -40,13 +42,14 @@ export class DependencyService {
     const filteredImportedModules = this.cleanIgnoredImportedModules(
       importedModules,
     );
-    return {
-      name: module.metatype.name,
-      // type: nodeType,
-      children: filteredImportedModules.map((module: Module) =>
-        this.buildTree(module),
-      ),
-    };
+
+    const tree = new TreeModel();
+    tree.name = module.metatype.name;
+    tree.children = filteredImportedModules.map((module: Module) =>
+      this.buildTree(module),
+    );
+
+    return tree;
   }
 
   private cleanIgnoredImportedModules(importedModules: Module[]) {
@@ -60,7 +63,7 @@ export class DependencyService {
 
   private cleanIgnoredRootNodes(tree: TreeModel) {
     tree.children = tree.children.filter((childNode: TreeModel) =>
-      this.ignoredModules.find(
+      this.ignoredRootModules.find(
         (ignoredModuleName: string) => ignoredModuleName !== childNode.name,
       ),
     );
