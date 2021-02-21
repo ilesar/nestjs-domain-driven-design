@@ -30,16 +30,7 @@ import { GraphqlAuthGuard } from '@application/auth/guards/graphql-auth-guard.se
       inject: [ConfigService],
     }),
   ],
-  providers: [
-    AuthService,
-    LocalStrategy,
-    JwtStrategy,
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: JwtAuthGuard,
-    // },
-    GraphqlAuthGuard,
-  ],
+  providers: [AuthService, LocalStrategy, JwtStrategy, GraphqlAuthGuard],
   exports: [AuthService, GraphqlAuthGuard],
 })
 export class AuthModule {}
