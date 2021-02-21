@@ -12,7 +12,7 @@ import { StorageCoreModule } from '@codebrew/nestjs-storage/dist/storage-core.mo
 import { ScheduleModule } from 'nest-schedule';
 
 export class DependencyService {
-  private applicationModule: Module;
+  private readonly applicationModule: Module;
 
   private ignoredModules: string[] = [
     ConfigModule.name,
@@ -46,7 +46,7 @@ export class DependencyService {
 
   private buildTree(module: Module): TreeModel {
     const importedModules = Array.from(module.imports);
-    const filteredImportedModules = this.cleanIgnoredImportedModules(
+    const filteredImportedModules = this.removeIgnoredModulesFromPool(
       importedModules,
     );
 
@@ -59,7 +59,7 @@ export class DependencyService {
     return tree;
   }
 
-  private cleanIgnoredImportedModules(importedModules: Module[]) {
+  private removeIgnoredModulesFromPool(importedModules: Module[]) {
     return importedModules.filter((importedModule: Module) => {
       return !this.ignoredModules.find(
         (ignoredModuleName: string) =>
