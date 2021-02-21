@@ -5,8 +5,9 @@ import { User } from '@domain/models/user.model';
 import { JwtAuthGuard } from '@application/auth/guards/jwt-auth.guard';
 import { AccessTokenDto } from '@api/base/outputs/access-token.dto';
 import { UserDto } from '@api/base/outputs/user.dto';
+import { RestController } from '@application/decorators/rest-controller.decorator';
 
-@Controller()
+@RestController('authorization', '🔐')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
@@ -15,7 +16,7 @@ export class AuthController {
     return this.authService.login(request.body);
   }
 
-  @Get('profile')
+  @Get('me')
   @UseGuards(JwtAuthGuard)
   async getData(@CurrentUser() currentUser: User): Promise<UserDto> {
     return currentUser;
