@@ -24,7 +24,6 @@ import { AuthModule } from '@application/auth/auth.module';
     StorageModule.forRoot(storageConfig),
     StatusMonitorModule.setUp(statusMonitorConfig),
     ScheduleModule.register(),
-    DomainModule,
     GraphQLModule.forRootAsync(graphQLConfig),
     AuthModule,
   ],
