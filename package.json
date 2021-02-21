@@ -46,6 +46,7 @@
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.5.1",
     "@nestjs/platform-socket.io": "^7.6.12",
+    "@nestjs/swagger": "^4.7.13",
     "@nestjs/typeorm": "^7.1.5",
     "@slynova/flydrive": "^1.0.3",
     "apollo-server-express": "^2.21.0",
@@ -67,6 +68,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
+    "swagger-ui-express": "^4.1.6",
     "typeorm": "^0.2.31",
     "typeorm-naming-strategies": "^2.0.0"
   },
