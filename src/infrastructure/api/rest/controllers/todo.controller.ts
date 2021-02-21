@@ -5,9 +5,9 @@ import { JwtAuthGuard } from '@application/auth/guards/jwt-auth.guard';
 import { UserDto } from '@api/base/outputs/user.dto';
 import { JwtRestController } from '@application/decorators/jwt-rest-controller.decorator';
 
-@JwtRestController('cats', '😸')
+@JwtRestController('todo', '📝')
 export class TodoController {
-  @Get('todos')
+  @Get('')
   @UseGuards(JwtAuthGuard)
   async getData(@CurrentUser() currentUser: User): Promise<UserDto> {
     return currentUser;
