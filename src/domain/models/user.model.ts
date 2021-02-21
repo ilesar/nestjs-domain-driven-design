@@ -1,1 +1,5 @@
-export class User {}
+export class User {
+  userId: any;
+
+  username: string;
+}

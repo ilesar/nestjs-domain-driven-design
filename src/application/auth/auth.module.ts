@@ -8,6 +8,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtStrategy } from '@application/auth/strategies/jwt.strategy';
 import { JwtAuthGuard } from '@application/auth/guards/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
+import { GraphqlAuthGuard } from '@application/auth/guards/graphql-auth-guard.service';
 
 @Module({
   imports: [
@@ -33,11 +34,12 @@ import { APP_GUARD } from '@nestjs/core';
     AuthService,
     LocalStrategy,
     JwtStrategy,
-    {
-      provide: APP_GUARD,
-      useClass: JwtAuthGuard,
-    },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: JwtAuthGuard,
+    // },
+    GraphqlAuthGuard,
   ],
-  exports: [AuthService],
+  exports: [AuthService, GraphqlAuthGuard],
 })
 export class AuthModule {}

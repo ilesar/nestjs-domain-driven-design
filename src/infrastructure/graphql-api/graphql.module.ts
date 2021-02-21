@@ -3,6 +3,8 @@ import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql';
 import { NestjsQueryTypeOrmModule } from '@nestjs-query/query-typeorm';
 import { TodoItemEntity } from '@infrastructure/database/entities/todo-item/todo-item.entity';
 import { TodoItemDto } from '@infrastructure/graphql-api/outputs/todo-item/todo-item.dto';
+import { GraphqlAuthGuard } from '@application/auth/guards/graphql-auth-guard.service';
+import { TestResolver } from '@infrastructure/graphql-api/resolvers/test.resolver';
 
 @Module({
   imports: [
@@ -15,12 +17,12 @@ import { TodoItemDto } from '@infrastructure/graphql-api/outputs/todo-item/todo-
         {
           DTOClass: TodoItemDto,
           EntityClass: TodoItemEntity,
-          guards: [],
+          guards: [GraphqlAuthGuard],
         },
       ],
     }),
   ],
-  controllers: [],
-  providers: [],
+  providers: [TestResolver],
+  exports: [],
 })
 export class GraphqlModule {}
