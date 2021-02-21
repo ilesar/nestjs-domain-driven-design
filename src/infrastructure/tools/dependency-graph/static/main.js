@@ -1,59 +1,8 @@
-function resolveColor(d) {
-  let color = null;
-  console.log(d);
-  switch (d) {
-    case 'domain':
-      color = 'white';
-      break;
-    case 'core':
-      color = 'red';
-      break;
-    case 'db':
-      color = 'lightgrey';
-      break;
-    case 'global':
-      color = 'black';
-      break;
-  }
-
-  return color;
-}
-
-function resolveIcon(d) {
-  let color = null;
-  console.log(d);
-  switch (d) {
-    case 'domain':
-      color = '⚙️';
-      break;
-    case 'core':
-      color = '💥';
-      break;
-    case 'db':
-      color = '💾';
-      break;
-    case 'global':
-      color = '🌍';
-      break;
-    case 'config':
-      color = '🎛';
-      break;
-    case 'seed':
-      color = '🌱';
-      break;
-    case 'app':
-      color = '💻';
-      break;
-  }
-
-  return color;
-}
-
 fetch('http://localhost:3000/dependency-graph/data')
-  .then(function(stream) {
+  .then(function (stream) {
     return stream.json();
   })
-  .then(function(data) {
+  .then(function (data) {
     // Set the dimensions and margins of the diagram
     const margin = { top: 20, right: 90, bottom: 30, left: 0 };
     const width = window.innerWidth - margin.left - margin.right;
@@ -76,14 +25,16 @@ fetch('http://localhost:3000/dependency-graph/data')
     const treemap = d3.tree().size([height, width]);
 
     // Assigns parent, children, height, depth
-    const root = d3.hierarchy(data, function(d) {
+    const root = d3.hierarchy(data, function (d) {
       return d.children;
     });
     root.x0 = height / 2;
     root.y0 = 0;
 
+    if (root.children) {
+      root.children.forEach(collapse);
+    }
     // Collapse after the second level
-    root.children.forEach(collapse);
 
     let i = 0;
 
@@ -107,7 +58,7 @@ fetch('http://localhost:3000/dependency-graph/data')
       const links = treeData.descendants().slice(1);
 
       // Normalize for fixed-depth.
-      nodes.forEach(function(d) {
+      nodes.forEach(function (d) {
         if (d.depth === 0) {
           d.y = 100;
         } else {
@@ -118,7 +69,7 @@ fetch('http://localhost:3000/dependency-graph/data')
       // ****************** Nodes section ***************************
 
       // Update the nodes...
-      const node = svg.selectAll('g.node').data(nodes, function(d) {
+      const node = svg.selectAll('g.node').data(nodes, function (d) {
         return d.id || (d.id = ++i);
       });
 
@@ -127,7 +78,7 @@ fetch('http://localhost:3000/dependency-graph/data')
         .enter()
         .append('g')
         .attr('class', 'node')
-        .attr('transform', function(d) {
+        .attr('transform', function (d) {
           return `translate(${source.y0},${source.x0})`;
         })
         .on('click', click);
@@ -148,24 +99,24 @@ fetch('http://localhost:3000/dependency-graph/data')
         .attr('dy', '9px')
         .style('cursor', 'pointer')
         .style('font-size', '24px')
-        .attr('text-anchor', function(d) {
+        .attr('text-anchor', function (d) {
           return d.children || 'start';
         })
-        .text(function(d) {
-          return resolveIcon(d.data.type);
+        .text(function (d) {
+          return '⚙️';
         });
 
       // Add labels for the nodes
       nodeEnter
         .append('text')
         .attr('dy', '.35em')
-        .attr('x', function(d) {
+        .attr('x', function (d) {
           return d.children || 13;
         })
-        .attr('text-anchor', function(d) {
+        .attr('text-anchor', function (d) {
           return d.children || 'start';
         })
-        .text(function(d) {
+        .text(function (d) {
           return d.data.name + (d._children ? ' ►' : '');
         });
 
@@ -176,7 +127,7 @@ fetch('http://localhost:3000/dependency-graph/data')
       nodeUpdate
         .transition()
         .duration(duration)
-        .attr('transform', function(d) {
+        .attr('transform', function (d) {
           return `translate(${d.y},${d.x})`;
         });
 
@@ -184,7 +135,7 @@ fetch('http://localhost:3000/dependency-graph/data')
       nodeUpdate
         .select('circle.node')
         .attr('r', 10)
-        .style('fill', function(d) {
+        .style('fill', function (d) {
           let color = resolveColor(d.data.type);
           return d._children ? color : '#fff';
         })
@@ -195,7 +146,7 @@ fetch('http://localhost:3000/dependency-graph/data')
         .exit()
         .transition()
         .duration(duration)
-        .attr('transform', function(d) {
+        .attr('transform', function (d) {
           return `translate(${source.y},${source.x})`;
         })
         .remove();
@@ -209,7 +160,7 @@ fetch('http://localhost:3000/dependency-graph/data')
       // ****************** links section ***************************
 
       // Update the links...
-      const link = svg.selectAll('path.link').data(links, function(d) {
+      const link = svg.selectAll('path.link').data(links, function (d) {
         return d.id;
       });
 
@@ -218,7 +169,7 @@ fetch('http://localhost:3000/dependency-graph/data')
         .enter()
         .insert('path', 'g')
         .attr('class', 'link')
-        .attr('d', function(d) {
+        .attr('d', function (d) {
           const o = { x: source.x0, y: source.y0 };
           return diagonal(o, o);
         });
@@ -230,7 +181,7 @@ fetch('http://localhost:3000/dependency-graph/data')
       linkUpdate
         .transition()
         .duration(duration)
-        .attr('d', function(d) {
+        .attr('d', function (d) {
           return diagonal(d, d.parent);
         });
 
@@ -239,14 +190,14 @@ fetch('http://localhost:3000/dependency-graph/data')
         .exit()
         .transition()
         .duration(duration)
-        .attr('d', function(d) {
+        .attr('d', function (d) {
           const o = { x: source.x, y: source.y };
           return diagonal(o, o);
         })
         .remove();
 
       // Store the old positions for transition.
-      nodes.forEach(function(d) {
+      nodes.forEach(function (d) {
         d.x0 = d.x;
         d.y0 = d.y;
       });
