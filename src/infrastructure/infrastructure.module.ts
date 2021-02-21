@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '@infrastructure/database/database.module';
-import { GraphqlModule } from '@infrastructure/graphql-api/graphql.module';
+import { GraphqlModule } from '@infrastructure/api/graphql/graphql.module';
 import { ApplicationModule } from '@application/application.module';
 import { DomainModule } from '@domain/domain.module';
-import { ApiModule } from '@infrastructure/rest-api/api.module';
+import { RestModule } from '@infrastructure/api/rest/rest.module';
 
 @Module({
   imports: [
@@ -11,7 +11,7 @@ import { ApiModule } from '@infrastructure/rest-api/api.module';
     DomainModule,
     DatabaseModule,
     GraphqlModule,
-    ApiModule,
+    RestModule,
   ],
   providers: [],
   exports: [],

@@ -20,6 +20,10 @@ type User {
   username: String!
 }
 
+type AccessToken {
+  token: String!
+}
+
 type DeleteManyResponse {
   """The number of records deleted."""
   deletedCount: Int!
@@ -96,7 +100,7 @@ type TodoItemMaxAggregate {
 }
 
 type Query {
-  testAction: User!
+  profile: User!
   todoItem(
     """The id of the record to find."""
     id: ID!
@@ -202,12 +206,18 @@ enum SortNulls {
 }
 
 type Mutation {
+  login(input: LoginInput!): AccessToken!
   createOneTodoItem(input: CreateOneTodoItemInput!): TodoItem!
   createManyTodoItems(input: CreateManyTodoItemsInput!): [TodoItem!]!
   updateOneTodoItem(input: UpdateOneTodoItemInput!): TodoItem!
   updateManyTodoItems(input: UpdateManyTodoItemsInput!): UpdateManyResponse!
   deleteOneTodoItem(input: DeleteOneInput!): TodoItemDeleteResponse!
   deleteManyTodoItems(input: DeleteManyTodoItemsInput!): DeleteManyResponse!
+}
+
+input LoginInput {
+  username: String!
+  password: String!
 }
 
 input CreateOneTodoItemInput {

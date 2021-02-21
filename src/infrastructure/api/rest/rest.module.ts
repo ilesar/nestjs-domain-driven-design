@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from '@infrastructure/rest-api/controllers/app.controller';
+import { AuthController } from '@api/rest/controllers/auth.controller';
 import { AuthModule } from '@application/auth/auth.module';
 
 @Module({
   imports: [AuthModule],
-  controllers: [AppController],
+  controllers: [AuthController],
   providers: [],
 })
-export class ApiModule {}
+export class RestModule {}
