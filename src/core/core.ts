@@ -5,6 +5,7 @@ import { WinstonLoggerService } from '@nest-toolbox/winston-logger';
 import { DependencyGraphModule } from '@infrastructure/tools/dependency-graph/dependency-graph.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { RestModule } from '@api/rest/rest.module';
+import { RestCrudModule } from '@api/rest/crud/rest-crud.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(CoreModule, {
@@ -25,7 +26,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config, {
-    include: [RestModule],
+    include: [RestModule, RestCrudModule],
   });
   SwaggerModule.setup('api', app, document);
 
