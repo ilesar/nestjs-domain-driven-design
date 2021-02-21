@@ -6,6 +6,11 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { InternalCoreModule } from '@nestjs/core/injector/internal-core-module';
 import { CoreModule } from '../../../../core/core.module';
+import { ConfigHostModule } from '@nestjs/config/dist/config-host.module';
+import { TypeOrmCoreModule } from '@nestjs/typeorm/dist/typeorm-core.module';
+import { MailerCoreModule } from '@nestjs-modules/mailer/dist/mailer-core.module';
+import { StorageCoreModule } from '@codebrew/nestjs-storage/dist/storage-core.module';
+import { ScheduleModule } from 'nest-schedule';
 
 export class DependencyService {
   private applicationModule: Module;
@@ -16,6 +21,11 @@ export class DependencyService {
     ConfigModule.name,
     TypeOrmModule.name,
     InternalCoreModule.name,
+    ConfigHostModule.name,
+    TypeOrmCoreModule.name,
+    MailerCoreModule.name,
+    StorageCoreModule.name,
+    ScheduleModule.name,
   ];
 
   constructor(private readonly application: INestApplication) {
@@ -54,18 +64,18 @@ export class DependencyService {
 
   private cleanIgnoredImportedModules(importedModules: Module[]) {
     return importedModules.filter((importedModule: Module) => {
-      this.ignoredModules.find(
+      return !this.ignoredModules.find(
         (ignoredModuleName: string) =>
-          ignoredModuleName !== importedModule.metatype.name,
+          ignoredModuleName === importedModule.metatype.name,
       );
     });
   }
 
   private cleanIgnoredRootNodes(tree: TreeModel) {
-    tree.children = tree.children.filter((childNode: TreeModel) =>
-      this.ignoredRootModules.find(
-        (ignoredModuleName: string) => ignoredModuleName !== childNode.name,
-      ),
-    );
+    tree.children = tree.children.filter((childNode: TreeModel) => {
+      return !this.ignoredRootModules.find(
+        (ignoredModuleName: string) => ignoredModuleName === childNode.name,
+      );
+    });
   }
 }
