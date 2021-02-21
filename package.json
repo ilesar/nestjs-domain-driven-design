@@ -28,7 +28,8 @@
     "fixtures:load_new": "npx fixtures ./src/infrastructure/database/fixtures -c dist/application/config/database.config.js",
     "seeder:seed": "node dist/database/seeder/seeder.js",
     "db:recreate": "yarn db:drop && yarn migration:run && yarn fixtures:load",
-    "good:fences": "gf"
+    "good:fences": "gf",
+    "ci:flow": "npm run build && npm run good:fences"
   },
   "dependencies": {
     "@codebrew/nestjs-storage": "^0.1.4",

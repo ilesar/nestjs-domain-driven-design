@@ -12,7 +12,7 @@ async function bootstrap() {
   });
 
   if (process.env.APP_ENV === 'dev') {
-    DependencyGraphModule.generateGraph(app);
+    DependencyGraphModule.generateGraph(app, CoreModule.name);
   }
 
   await app.listen(3000);
