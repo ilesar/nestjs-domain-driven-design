@@ -8,5 +8,7 @@ export class UserModel {
   lastName: string;
   country: string;
   phone: string;
-  account: UserAccountModel;
+  email: string;
+
+  userAccount: UserAccountModel;
 }
