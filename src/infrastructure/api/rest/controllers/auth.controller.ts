@@ -1,11 +1,11 @@
 import { Post, UseGuards, Get, Body } from '@nestjs/common';
 import { AuthService } from '@application/auth/services/auth.service';
 import { CurrentUser } from '@application/decorators/current-user.decorator';
-import { UserModel } from '@domain/models/user.model';
 import { JwtAuthGuard } from '@application/auth/guards/jwt-auth.guard';
 import { AccessTokenDto } from '@api/base/outputs/access-token.dto';
-import { UserDto } from '@api/base/outputs/user.dto';
+import { UserAccountDto } from '@api/base/outputs/user-account.dto';
 import { RestController } from '@application/decorators/rest-controller.decorator';
+import { UserAccountModel } from '@domain/models/user-account.model';
 
 @RestController('auth', '🔐')
 export class AuthController {
@@ -18,7 +18,9 @@ export class AuthController {
 
   @Get('me')
   @UseGuards(JwtAuthGuard)
-  async getData(@CurrentUser() currentUser: UserModel): Promise<UserDto> {
-    return currentUser;
+  async me(
+    @CurrentUser() currentUserAccount: UserAccountModel,
+  ): Promise<UserAccountDto> {
+    return currentUserAccount;
   }
 }

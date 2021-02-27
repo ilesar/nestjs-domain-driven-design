@@ -3,9 +3,10 @@ import { AuthService } from './services/auth.service';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { JwtStrategy } from '@application/auth/strategies/jwt.strategy';
 import { GraphqlAuthGuard } from '@application/auth/guards/graphql-auth-guard.service';
 import { DomainModule } from '@domain/domain.module';
+import { AccessTokenFactory } from '@application/auth/factories/access-token.factory';
+import { RefreshTokenFactory } from '@application/auth/factories/refresh-token.factory';
 
 @Module({
   imports: [
@@ -27,7 +28,12 @@ import { DomainModule } from '@domain/domain.module';
       inject: [ConfigService],
     }),
   ],
-  providers: [AuthService, JwtStrategy, GraphqlAuthGuard],
+  providers: [
+    AuthService,
+    GraphqlAuthGuard,
+    AccessTokenFactory,
+    RefreshTokenFactory,
+  ],
   exports: [AuthService, GraphqlAuthGuard],
 })
 export class AuthModule {}

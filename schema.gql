@@ -2,8 +2,8 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
-  userId: String!
+type UserAccount {
+  id: Float!
   username: String!
 }
 
@@ -100,7 +100,7 @@ type TodoItemMaxAggregate {
 }
 
 type Query {
-  profile: User!
+  me: UserAccount!
   todoItem(
     """The id of the record to find."""
     id: ID!

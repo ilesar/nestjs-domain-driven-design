@@ -1,22 +1,35 @@
 import { Injectable } from '@nestjs/common';
 import { UserModel } from '@domain/models/user.model';
+import { UserAccountModel } from '@domain/models/user-account.model';
 
 @Injectable()
 export class UserService {
-  private readonly users = [
+  private readonly userAccounts: UserAccountModel[] = [
     {
-      userId: 1,
-      username: 'admin',
+      id: 1,
+      hash: 'fuum903u9m2t4qc92qtc4i9,,9tc24q,i9rtx',
+      email: '123@123.123',
+      username: 'adminBoi314',
       password: 'admin',
+      role: {
+        class: 'admin',
+      },
     },
     {
-      userId: 2,
-      username: 'maria',
-      password: 'guess',
+      id: 2,
+      hash: 'alpsjlasjfaskpfjafpkakjfspjpksjjfkafjk',
+      email: 'guest',
+      username: 'guest',
+      password: '1234',
+      role: {
+        class: 'admin',
+      },
     },
   ];
 
-  async findOne(username: string): Promise<UserModel | undefined> {
-    return this.users.find((user) => user.username === username);
+  async findOne(username: string): Promise<UserAccountModel | undefined> {
+    return this.userAccounts.find(
+      (userAccount: UserAccountModel) => userAccount.email === username,
+    );
   }
 }
