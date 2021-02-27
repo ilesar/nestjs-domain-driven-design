@@ -29,7 +29,10 @@
     "seeder:seed": "node dist/database/seeder/seeder.js",
     "db:recreate": "yarn db:drop && yarn migration:run && yarn fixtures:load",
     "good:fences": "gf",
-    "ci:flow": "npm run build && npm run good:fences"
+    "ci:flow": "npm run build && npm run good:fences",
+    "tools:uml:svg": "tsuml2 --glob ./src/domain/models/**/*.ts --tsconfig ./tsconfig.json --outFile ./public/vector/uml.svg",
+    "tools:uml:png": "tsuml2 --glob ./src/domain/models/*.ts --tsconfig ./tsconfig.json --outFile ./public/images/uml.png",
+    "tools:uml:svg:arrow": "tsuml2 --glob ./src/domain/models/**/*.ts -o ./public/vector/uml.svg --nomnoml \"#arrowSize: 1.5\" \"#.interface: fill=#8f8 dashed\""
   },
   "dependencies": {
     "@codebrew/nestjs-storage": "^0.1.4",
