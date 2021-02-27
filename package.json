@@ -60,6 +60,7 @@
     "@nestjsx/crud-typeorm": "^5.0.0-alpha.3",
     "@slynova/flydrive": "^1.0.3",
     "apollo-server-express": "^2.21.0",
+    "argon2": "^0.27.1",
     "class-transformer": "^0.3.2",
     "class-validator": "^0.13.1",
     "dataloader": "^2.0.0",

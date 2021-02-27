@@ -7,19 +7,19 @@ import { UserAccountDto } from '@api/base/outputs/user-account.dto';
 import { RestController } from '@application/decorators/rest-controller.decorator';
 import { UserAccountModel } from '@domain/models/user-account.model';
 import { RefreshTokenDto } from '@api/base/outputs/refresh-token.dto';
-import { InjectMapper } from '@automapper/nestjs';
-import { Mapper } from '@automapper/types';
+import { AuthValidator } from '@api/rest/validators/auth.validator';
 
 @RestController('auth', '🔐')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-    @InjectMapper() private blahMapper: Mapper,
+    private readonly authValidator: AuthValidator,
   ) {}
 
   @Post('login')
   async login(@Body() body): Promise<AccessTokenDto> {
-    const accessToken = await this.authService.login(body);
+    const userAccountModel = await this.authValidator.resolveUserAccount(body);
+    const accessToken = await this.authService.login(userAccountModel);
 
     const dto = new AccessTokenDto();
     dto.token = accessToken.token;
