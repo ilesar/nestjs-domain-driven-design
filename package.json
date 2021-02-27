@@ -51,6 +51,8 @@
     "@nestjs/platform-socket.io": "^7.6.12",
     "@nestjs/swagger": "^4.7.13",
     "@nestjs/typeorm": "^7.1.5",
+    "@nestjsplus/cookies": "^1.1.1",
+    "@nestjsplus/redirect": "^1.0.0",
     "@nestjsx/crud": "^5.0.0-alpha.3",
     "@nestjsx/crud-typeorm": "^5.0.0-alpha.3",
     "@slynova/flydrive": "^1.0.3",
