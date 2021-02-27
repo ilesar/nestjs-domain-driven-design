@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { UserService } from '@domain/services/user.service';
+import { UserAccountService } from '@domain/services/user-account.service';
 
 @Module({
   imports: [],
-  providers: [UserService],
-  exports: [UserService],
+  providers: [UserAccountService],
+  exports: [UserAccountService],
 })
 export class DomainModule {}

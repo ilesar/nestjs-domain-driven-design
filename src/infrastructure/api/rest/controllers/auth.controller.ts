@@ -6,6 +6,8 @@ import { AccessTokenDto } from '@api/base/outputs/access-token.dto';
 import { UserAccountDto } from '@api/base/outputs/user-account.dto';
 import { RestController } from '@application/decorators/rest-controller.decorator';
 import { UserAccountModel } from '@domain/models/user-account.model';
+import addCustomEqualityTester = jasmine.addCustomEqualityTester;
+import { RefreshTokenDto } from '@api/base/outputs/refresh-token.dto';
 
 @RestController('auth', '🔐')
 export class AuthController {
@@ -13,7 +15,16 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() body): Promise<AccessTokenDto> {
-    return this.authService.login(body);
+    const accessToken = await this.authService.login(body);
+
+    const dto = new AccessTokenDto();
+    dto.token = accessToken.token;
+    dto.expiresIn = accessToken.expiresIn;
+    dto.refreshToken = new RefreshTokenDto();
+    dto.refreshToken.token = accessToken.refreshToken.token;
+    dto.refreshToken.expiresIn = accessToken.refreshToken.expiresIn;
+
+    return dto;
   }
 
   @Get('me')

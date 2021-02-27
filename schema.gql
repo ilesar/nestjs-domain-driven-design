@@ -7,8 +7,15 @@ type UserAccount {
   username: String!
 }
 
+type RefreshToken {
+  token: String!
+  expiresIn: Float!
+}
+
 type AccessToken {
   token: String!
+  expiresIn: Float!
+  refreshToken: RefreshToken!
 }
 
 type TodoItem {

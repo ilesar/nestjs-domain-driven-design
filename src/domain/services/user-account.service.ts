@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { UserModel } from '@domain/models/user.model';
 import { UserAccountModel } from '@domain/models/user-account.model';
 
 @Injectable()
-export class UserService {
+export class UserAccountService {
   private readonly userAccounts: UserAccountModel[] = [
     {
       id: 1,

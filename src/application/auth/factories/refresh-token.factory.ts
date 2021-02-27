@@ -15,6 +15,7 @@ export class RefreshTokenFactory {
     const refreshToken = new RefreshTokenModel();
     refreshToken.token = 'refreshTokenForUser' + userAccount.username;
     refreshToken.expiresIn = this.calculateRefreshTokenExpirationTime();
+    refreshToken.isRevoked = false;
 
     return refreshToken;
   }
