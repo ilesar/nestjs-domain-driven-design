@@ -6,7 +6,10 @@ import { UserAccountEntity } from '@infrastructure/database/entities/auth/user-a
 })
 export class RefreshTokenEntity {
   @PrimaryGeneratedColumn('increment')
-  id: string;
+  id: number;
+
+  @PrimaryGeneratedColumn('uuid')
+  hash: string;
 
   @Column()
   expiresIn: Date;

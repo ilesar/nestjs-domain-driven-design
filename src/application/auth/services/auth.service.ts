@@ -4,22 +4,45 @@ import { ConfigService } from '@nestjs/config';
 import { AccessTokenFactory } from '@application/auth/factories/access-token.factory';
 import { RefreshTokenFactory } from '@application/auth/factories/refresh-token.factory';
 import { UserAccountModel } from '@domain/models/user-account.model';
+import { RefreshTokenEntityRepository } from '@infrastructure/database/repositories/refresh-token-entity.repository';
+import { RefreshTokenEntity } from '@infrastructure/database/entities/auth/refresh-token.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { JwtService } from '@nestjs/jwt';
+import { RefreshTokenModel } from '@application/auth/models/refresh-token.model';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private config: ConfigService,
-    private accessTokenFactory: AccessTokenFactory,
-    private refreshTokenFactory: RefreshTokenFactory,
+    private readonly config: ConfigService,
+    private readonly jwtService: JwtService,
+    private readonly accessTokenFactory: AccessTokenFactory,
+    private readonly refreshTokenFactory: RefreshTokenFactory,
+    @InjectRepository(RefreshTokenEntity)
+    private readonly refreshTokenEntityRepository: RefreshTokenEntityRepository,
   ) {}
 
   async login(user: UserAccountModel): Promise<AccessTokenModel> {
     const accessToken = this.accessTokenFactory.createTokenForUser(user);
+    const refreshToken = this.refreshTokenFactory.createTokenForUser(user);
 
-    accessToken.setRefreshToken(
-      this.refreshTokenFactory.createTokenForUser(user),
-    );
+    await this.refreshTokenEntityRepository.save(refreshToken);
+    this.signRefreshToken(user, refreshToken);
+    accessToken.setRefreshToken(refreshToken);
 
     return accessToken;
+  }
+
+  private signRefreshToken(
+    userAccount: UserAccountModel,
+    refreshToken: RefreshTokenModel,
+  ) {
+    refreshToken.token = this.jwtService.sign(
+      {},
+      {
+        expiresIn: this.config.get('REFRESH_TOKEN_EXPIRATION_TIME'),
+        jwtid: refreshToken.hash ?? 'akjhadsfhkhkaskhashhsakkhasdfsak',
+        subject: userAccount.hash ?? 'adjhqhwjdwbdnjwdbbwjdqjwdqnbdkwnqwjdk',
+      },
+    );
   }
 }

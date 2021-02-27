@@ -4,7 +4,7 @@ import { UserAccountEntity } from '@infrastructure/database/entities/auth/user-a
 @Entity({ name: 'users' })
 export class UserEntity {
   @PrimaryGeneratedColumn('increment')
-  id: string;
+  id: number;
 
   @PrimaryGeneratedColumn('uuid')
   hash: string;

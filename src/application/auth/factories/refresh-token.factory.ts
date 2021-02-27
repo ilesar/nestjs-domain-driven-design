@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { RefreshTokenModel } from '@application/auth/models/refresh-token.model';
 import { UserAccountModel } from '@domain/models/user-account.model';
 import { Injectable } from '@nestjs/common';
+import { DateTime } from 'luxon';
 
 @Injectable()
 export class RefreshTokenFactory {
@@ -15,12 +16,18 @@ export class RefreshTokenFactory {
     const refreshToken = new RefreshTokenModel();
     refreshToken.isRevoked = false;
     refreshToken.expiresIn = this.calculateRefreshTokenExpirationTime();
-    // refreshToken.token = this.createToken(refreshToken);
+    refreshToken.userAccount = userAccount;
 
     return refreshToken;
   }
 
-  private calculateRefreshTokenExpirationTime(): number {
-    return this.config.get('REFRESH_TOKEN_EXPIRATION_TIME');
+  private calculateRefreshTokenExpirationTime(): Date {
+    const lengthOfExpirationTimeout = this.config.get(
+      'REFRESH_TOKEN_EXPIRATION_TIME',
+    );
+
+    return DateTime.local()
+      .plus({ seconds: lengthOfExpirationTimeout })
+      .toJSDate();
   }
 }

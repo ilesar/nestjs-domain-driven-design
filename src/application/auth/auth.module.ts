@@ -7,11 +7,13 @@ import { GraphqlAuthGuard } from '@application/auth/guards/graphql-auth-guard.se
 import { DomainModule } from '@domain/domain.module';
 import { AccessTokenFactory } from '@application/auth/factories/access-token.factory';
 import { RefreshTokenFactory } from '@application/auth/factories/refresh-token.factory';
+import { DatabaseModule } from '@infrastructure/database/database.module';
 
 @Module({
   imports: [
     DomainModule,
     PassportModule,
+    DatabaseModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => {

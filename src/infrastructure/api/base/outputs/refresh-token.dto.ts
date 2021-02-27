@@ -4,6 +4,4 @@ import { Field, ObjectType } from '@nestjs/graphql';
 export class RefreshTokenDto {
   @Field()
   token: string;
-  @Field()
-  expiresIn: number;
 }
