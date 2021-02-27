@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { AuthGuard } from '@nestjs/passport';
-import { User } from '@domain/models/user.model';
+import { UserModel } from '@domain/models/user.model';
 
 @Injectable()
 export class GraphqlAuthGuard extends AuthGuard('jwt') {
@@ -18,7 +18,7 @@ export class GraphqlAuthGuard extends AuthGuard('jwt') {
     return ctx.getContext().req;
   }
 
-  handleRequest(err: Error, user: User): any {
+  handleRequest(err: Error, user: UserModel): any {
     if (err || !user) {
       throw err || new UnauthorizedException();
     }
