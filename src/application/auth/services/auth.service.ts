@@ -9,6 +9,7 @@ import { RefreshTokenEntity } from '@infrastructure/database/entities/auth/refre
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { RefreshTokenModel } from '@application/auth/models/refresh-token.model';
+import { UserAccountEntityRepository } from '@infrastructure/database/repositories/user-account-entity.repository';
 
 @Injectable()
 export class AuthService {
@@ -19,6 +20,7 @@ export class AuthService {
     private readonly refreshTokenFactory: RefreshTokenFactory,
     @InjectRepository(RefreshTokenEntity)
     private readonly refreshTokenEntityRepository: RefreshTokenEntityRepository,
+    private readonly userAccountEntityRepository: UserAccountEntityRepository,
   ) {}
 
   async login(user: UserAccountModel): Promise<AccessTokenModel> {
@@ -44,5 +46,9 @@ export class AuthService {
         subject: userAccount.hash ?? 'adjhqhwjdwbdnjwdbbwjdqjwdqnbdkwnqwjdk',
       },
     );
+  }
+
+  public async createUserAccount(userAccount: UserAccountModel) {
+    await this.userAccountEntityRepository.save(userAccount);
   }
 }

@@ -5,9 +5,9 @@ import { JwtAuthGuard } from '@application/auth/guards/jwt-auth.guard';
 import { AccessTokenDto } from '@api/base/outputs/access-token.dto';
 import { UserAccountDto } from '@api/base/outputs/user-account.dto';
 import { RestController } from '@application/decorators/rest-controller.decorator';
-import { UserAccountModel } from '@domain/models/user-account.model';
 import { RefreshTokenDto } from '@api/base/outputs/refresh-token.dto';
 import { AuthValidator } from '@api/rest/validators/auth.validator';
+import { UserAccountEntity } from '@infrastructure/database/entities/auth/user-account.entity';
 
 @RestController('auth', '🔐')
 export class AuthController {
@@ -33,7 +33,7 @@ export class AuthController {
   @Get('me')
   @UseGuards(JwtAuthGuard)
   async me(
-    @CurrentUser() currentUserAccount: UserAccountModel,
+    @CurrentUser() currentUserAccount: UserAccountEntity,
   ): Promise<UserAccountDto> {
     return currentUserAccount;
   }
