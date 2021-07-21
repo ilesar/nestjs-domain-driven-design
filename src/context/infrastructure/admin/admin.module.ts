@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { adminCrudConfig } from '../../application/config/admin-crud.config';
+import { adminCrudMap } from './admin-crud.map';
 import { TodoItemEntity } from '../database/entities/todo-item/todo-item.entity';
 import { TodoItemCrudController } from './resources/todo-item/todo-item.crud-controller';
 import { TodoItemCrudService } from './resources/todo-item/todo-item.crud-service';

@@ -4,7 +4,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { WinstonLoggerService } from '@nest-toolbox/winston-logger';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AdminModule } from './context/infrastructure/admin/admin.module';
-import { DependencyGraphModule } from './tools/dependency-graph/dependency-graph.module';
+import { DependencyGraphModule } from './context/infrastructure/dependency-graph/dependency-graph.module';
 import * as sourceMapSupport from 'source-map-support';
 
 async function bootstrap() {

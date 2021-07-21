@@ -6,6 +6,15 @@
     {
       "modules": "*",
       "accessibleTo": ["core"]
+    },
+    {
+      "modules": "./dependency-graph.module"
+    },
+    {
+      "modules": "./dependency-graph.module"
+    },
+    {
+      "modules": "dependency-graph.module"
     }
   ],
   "imports": [

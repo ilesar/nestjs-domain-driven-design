@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql';
 import { NestjsQueryTypeOrmModule } from '@nestjs-query/query-typeorm';
 import { TodoItemEntity } from '../database/entities/todo-item/todo-item.entity';
-import { graphqlCrudConfig } from '../../application/config/graphql-crud.config';
+import { graphqlCrudMap } from './graphql-crud.map';
 import { GraphQLModule } from '@nestjs/graphql';
 import { graphQLConfig } from '../../application/config/graphQL.config';
 
@@ -13,7 +13,7 @@ import { graphQLConfig } from '../../application/config/graphQL.config';
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypeOrmModule.forFeature([TodoItemEntity])],
       resolvers: [
-        ...graphqlCrudConfig.map((entityItem) => {
+        ...graphqlCrudMap.map((entityItem) => {
           return {
             DTOClass: entityItem.dto,
             EntityClass: entityItem.entity,

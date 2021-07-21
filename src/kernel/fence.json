@@ -2,10 +2,12 @@
   "tags": [
     "core"
   ],
-  "exports": [],
+  "exports": [
+    {
+      "modules": "./kernel.module"
+    }
+  ],
   "imports": [
-    "infrastructure",
-    "application",
-    "domain"
+    "infrastructure"
   ]
 }
