@@ -12,10 +12,14 @@ import { automapperConfig } from '../application/config/automapper.config';
 import { mailerConfig } from '../application/config/mailer.config';
 import { databaseConfig } from '../application/config/database.config';
 import { storageConfig } from '../application/config/storage.config';
+import { TransportModule } from './transport/transport.module';
+import { MediaModule } from './media/media.module';
 
 const INTEGRATIONS = [
   GraphqlModule,
   AdminModule,
+  TransportModule,
+  MediaModule,
   MailerModule.forRoot(mailerConfig),
   TypeOrmModule.forRoot(databaseConfig),
   ScheduleModule.register(),
