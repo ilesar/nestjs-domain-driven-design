@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from './database/database.module';
 import { ApplicationModule } from '../application/application.module';
-import { AdminModule } from './admin/admin.module';
+import { RestModule } from './admin/rest.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphqlModule } from './graphql/graphql.module';
 import { MailerModule } from '@nestjs-modules/mailer';
@@ -14,10 +14,14 @@ import { databaseConfig } from '../application/config/database.config';
 import { storageConfig } from '../application/config/storage.config';
 import { TransportModule } from './transport/transport.module';
 import { MediaModule } from './media/media.module';
+import { TodoItemEntity } from './database/entities/todo-item/todo-item.entity';
+import { AdminModule } from '@adminjs/nestjs';
+import AdminJS from 'adminjs';
+import { Database, Resource } from '@adminjs/typeorm';
 
 const INTEGRATIONS = [
   GraphqlModule,
-  AdminModule,
+  RestModule,
   TransportModule,
   MediaModule,
   ScheduleModule.register(),
@@ -25,7 +29,15 @@ const INTEGRATIONS = [
   AutomapperModule.forRoot(automapperConfig),
   MailerModule.forRootAsync({ useFactory: () => mailerConfig }),
   StorageModule.forRootAsync({ useFactory: () => storageConfig }),
+  AdminModule.createAdmin({
+    adminJsOptions: {
+      rootPath: '/admin',
+      resources: [TodoItemEntity],
+    },
+  }),
 ];
+
+AdminJS.registerAdapter({ Database, Resource });
 
 @Module({
   imports: [ApplicationModule, DatabaseModule, ...INTEGRATIONS],

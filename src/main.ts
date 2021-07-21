@@ -3,7 +3,7 @@ import { KernelModule } from './kernel/kernel.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { WinstonLoggerService } from '@nest-toolbox/winston-logger';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AdminModule } from './context/infrastructure/admin/admin.module';
+import { RestModule } from './context/infrastructure/admin/rest.module';
 import { DependencyGraphModule } from './context/infrastructure/dependency-graph/dependency-graph.module';
 import * as sourceMapSupport from 'source-map-support';
 
@@ -28,7 +28,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config, {
-    include: [AdminModule],
+    include: [RestModule],
   });
   SwaggerModule.setup('api', app, document);
 

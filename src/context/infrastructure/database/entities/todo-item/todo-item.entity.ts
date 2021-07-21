@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
@@ -10,7 +11,7 @@ import { ApiProperty } from '@nestjs/swagger';
 @Entity({
   name: 'todo_items',
 })
-export class TodoItemEntity {
+export class TodoItemEntity extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   id!: string;
