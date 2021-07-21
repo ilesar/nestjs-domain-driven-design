@@ -1,20 +1,20 @@
 import { NestFactory } from '@nestjs/core';
-import { CoreModule } from './core/core.module';
+import { KernelModule } from './kernel/kernel.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { WinstonLoggerService } from '@nest-toolbox/winston-logger';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AdminModule } from '@infrastructure/admin/admin.module';
+import { AdminModule } from './context/infrastructure/admin/admin.module';
 import { DependencyGraphModule } from './tools/dependency-graph/dependency-graph.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(CoreModule, {
+  const app = await NestFactory.create<NestExpressApplication>(KernelModule, {
     logger: new WinstonLoggerService({
       projectName: 'project',
     }),
   });
 
   if (process.env.APP_ENV === 'dev') {
-    DependencyGraphModule.generateGraph(app, CoreModule.name);
+    DependencyGraphModule.generateGraph(app, KernelModule.name);
   }
 
   const config = new DocumentBuilder()

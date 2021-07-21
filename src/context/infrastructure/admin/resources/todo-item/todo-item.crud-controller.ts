@@ -1,8 +1,8 @@
 import { Crud, CrudController } from '@nestjsx/crud';
 
-import { TodoItemCrudService } from '@infrastructure/admin/resources/todo-item/todo-item.crud-service';
-import { TodoItemEntity } from '@infrastructure/database/entities/todo-item/todo-item.entity';
-import { RestController } from '@application/decorators/rest-controller.decorator';
+import { TodoItemCrudService } from './todo-item.crud-service';
+import { TodoItemEntity } from '../../../database/entities/todo-item/todo-item.entity';
+import { RestController } from '../../../../application/decorators/rest-controller.decorator';
 
 @Crud({
   model: {

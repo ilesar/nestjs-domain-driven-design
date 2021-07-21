@@ -2,7 +2,7 @@ import { GqlModuleAsyncOptions } from '@nestjs/graphql/dist/interfaces/gql-modul
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
-const graphQLConfig: GqlModuleAsyncOptions = {
+export const graphQLConfig: GqlModuleAsyncOptions = {
   imports: [ConfigModule],
   useFactory: async (configService: ConfigService) => {
     return {
@@ -26,5 +26,3 @@ const graphQLConfig: GqlModuleAsyncOptions = {
   },
   inject: [ConfigService],
 };
-
-export = graphQLConfig;

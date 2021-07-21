@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const databaseConfig: ConnectionOptions = {
+export const databaseConfig: ConnectionOptions = {
   type: 'mariadb',
   host: process.env.DATABASE_HOST,
   username: process.env.DATABASE_USERNAME,
@@ -24,5 +24,3 @@ const databaseConfig: ConnectionOptions = {
   migrationsRun: false,
   charset: 'utf8mb4_unicode_ci',
 };
-
-export = databaseConfig;

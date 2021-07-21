@@ -1,6 +1,6 @@
 import { DriverType, StorageModuleOptions } from '@codebrew/nestjs-storage';
 
-const storageConfig: StorageModuleOptions = {
+export const storageConfig: StorageModuleOptions = {
   default: 'local',
   disks: {
     local: {
@@ -11,5 +11,3 @@ const storageConfig: StorageModuleOptions = {
     },
   },
 };
-
-export = storageConfig;

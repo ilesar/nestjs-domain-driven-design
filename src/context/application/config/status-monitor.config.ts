@@ -1,6 +1,6 @@
 import { StatusMonitorConfiguration } from 'nest-status-monitor/src/config/status.monitor.configuration';
 
-const statusMonitorConfig: StatusMonitorConfiguration = {
+export const statusMonitorConfig: StatusMonitorConfiguration = {
   pageTitle: 'Nest.js Monitoring Page',
   port: 3000,
   path: '/status',
@@ -29,5 +29,3 @@ const statusMonitorConfig: StatusMonitorConfiguration = {
   },
   healthChecks: [],
 };
-
-export = statusMonitorConfig;
