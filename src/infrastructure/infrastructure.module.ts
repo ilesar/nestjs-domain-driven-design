@@ -1,18 +1,27 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '@infrastructure/database/database.module';
-import { GraphqlModule } from '@infrastructure/api/graphql/graphql.module';
 import { ApplicationModule } from '@application/application.module';
-import { DomainModule } from '@domain/domain.module';
-import { RestModule } from '@infrastructure/api/rest/rest.module';
+import { AdminModule } from '@infrastructure/admin/admin.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { GraphqlModule } from '@infrastructure/graphql/graphql.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import * as mailerConfig from '@application/config/mailer.config';
+import * as databaseConfig from '@application/config/database.config';
+import { ScheduleModule } from 'nest-schedule';
+import { StorageModule } from '@codebrew/nestjs-storage';
+import * as storageConfig from '@application/config/storage.config';
+
+const INTEGRATIONS = [
+  GraphqlModule,
+  AdminModule,
+  MailerModule.forRoot(mailerConfig),
+  TypeOrmModule.forRoot(databaseConfig),
+  ScheduleModule.register(),
+  StorageModule.forRoot(storageConfig),
+];
 
 @Module({
-  imports: [
-    ApplicationModule,
-    DomainModule,
-    DatabaseModule,
-    GraphqlModule,
-    RestModule,
-  ],
+  imports: [ApplicationModule, DatabaseModule, ...INTEGRATIONS],
   providers: [],
   exports: [],
 })

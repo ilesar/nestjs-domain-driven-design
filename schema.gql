@@ -2,21 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type UserAccount {
-  id: Float!
-  username: String!
-}
-
-type RefreshToken {
-  token: String!
-}
-
-type AccessToken {
-  token: String!
-  expiresIn: Float!
-  refreshToken: RefreshToken!
-}
-
 type TodoItem {
   id: Int!
   title: String!
@@ -106,7 +91,6 @@ type TodoItemMaxAggregate {
 }
 
 type Query {
-  me: UserAccount!
   todoItem(
     """The id of the record to find."""
     id: ID!
@@ -212,18 +196,12 @@ enum SortNulls {
 }
 
 type Mutation {
-  login(input: LoginInput!): AccessToken!
   createOneTodoItem(input: CreateOneTodoItemInput!): TodoItem!
   createManyTodoItems(input: CreateManyTodoItemsInput!): [TodoItem!]!
   updateOneTodoItem(input: UpdateOneTodoItemInput!): TodoItem!
   updateManyTodoItems(input: UpdateManyTodoItemsInput!): UpdateManyResponse!
   deleteOneTodoItem(input: DeleteOneInput!): TodoItemDeleteResponse!
   deleteManyTodoItems(input: DeleteManyTodoItemsInput!): DeleteManyResponse!
-}
-
-input LoginInput {
-  username: String!
-  password: String!
 }
 
 input CreateOneTodoItemInput {

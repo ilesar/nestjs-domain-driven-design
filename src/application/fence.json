@@ -5,7 +5,7 @@
   "exports": [
     {
       "modules": "*",
-      "accessibleTo": ["core", "infrastructure", "tests"]
+      "accessibleTo": ["infrastructure"]
     }
   ],
   "imports": [

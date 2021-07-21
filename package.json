@@ -35,6 +35,9 @@
     "tools:uml:svg:arrow": "tsuml2 --glob ./src/domain/models/**/*.ts -o ./public/vector/uml.svg --nomnoml \"#arrowSize: 1.5\" \"#.interface: fill=#8f8 dashed\""
   },
   "dependencies": {
+    "@admin-bro/nestjs": "^1.1.0",
+    "@adminjs/nestjs": "^2.0.0",
+    "@adminjs/typeorm": "^2.0.0",
     "@automapper/classes": "^3.0.10",
     "@automapper/core": "^3.0.10",
     "@automapper/nestjs": "^3.0.10",
@@ -59,6 +62,7 @@
     "@nestjsx/crud": "^5.0.0-alpha.3",
     "@nestjsx/crud-typeorm": "^5.0.0-alpha.3",
     "@slynova/flydrive": "^1.0.3",
+    "adminjs": "^5.1.0",
     "apollo-server-express": "^2.21.0",
     "argon2": "^0.27.1",
     "class-transformer": "^0.3.2",
@@ -77,6 +81,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
