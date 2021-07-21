@@ -34,6 +34,13 @@ const INTEGRATIONS = [
       rootPath: '/admin',
       resources: [TodoItemEntity],
     },
+    auth: {
+      authenticate: async (email, password) => {
+        return Promise.resolve({ email: 'test' });
+      },
+      cookieName: 'test',
+      cookiePassword: 'testPass',
+    },
   }),
 ];
 
