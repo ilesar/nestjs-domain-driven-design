@@ -1,8 +1,4 @@
-import {
-  InternalServerErrorException,
-  Module,
-  OnModuleInit,
-} from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { InfrastructureModule } from '../context/infrastructure/infrastructure.module';
 import { ToolsModule } from '../tools/tools.module';
 
@@ -11,8 +7,4 @@ import { ToolsModule } from '../tools/tools.module';
   providers: [],
   exports: [],
 })
-export class KernelModule implements OnModuleInit {
-  onModuleInit(): any {
-    throw new InternalServerErrorException('test');
-  }
-}
+export class KernelModule {}
