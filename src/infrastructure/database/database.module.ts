@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
 
 @Module({
-  imports: [],
+  imports: [
+    // GOAL -> BornfightDatabaseModule.register(config),
+  ],
   providers: [],
   exports: [],
 })

@@ -6,6 +6,7 @@ import { graphqlCrudConfig } from '@application/config/graphql-crud.config';
 
 @Module({
   imports: [
+    // GOAL -> BornfightAPIModule.register(config),
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypeOrmModule.forFeature([TodoItemEntity])],
       resolvers: [

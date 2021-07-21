@@ -7,6 +7,7 @@ import { adminCrudConfig } from '@application/config/admin-crud.config';
 
 @Module({
   imports: [
+    // GOAL -> BornfightAdminModule.register(config),
     TypeOrmModule.forFeature(
       adminCrudConfig.map((entityItem) => entityItem.entity),
     ),
