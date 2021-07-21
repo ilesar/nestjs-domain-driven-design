@@ -35,7 +35,7 @@
     "tools:uml:svg:arrow": "tsuml2 --glob src/context/domain/models/**/*.ts -o ./public/vector/uml.svg --nomnoml \\\"#arrowSize: 1.5\\\" \\\"#.interface: fill=#8f8 dashed\\\""
   },
   "dependencies": {
-    "@admin-bro/nestjs": "^1.1.0",
+    "@adminjs/express": "^4.0.0",
     "@adminjs/nestjs": "^2.0.0",
     "@adminjs/typeorm": "^2.0.0",
     "@automapper/classes": "^3.0.10",
@@ -71,6 +71,9 @@
     "class-validator": "^0.13.1",
     "dataloader": "^2.0.0",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-formidable": "^1.2.0",
+    "express-session": "^1.17.2",
     "graphql": "^15.5.0",
     "graphql-relay": "^0.6.0",
     "graphql-subscriptions": "^1.2.0",
