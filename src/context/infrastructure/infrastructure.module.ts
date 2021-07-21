@@ -20,11 +20,11 @@ const INTEGRATIONS = [
   AdminModule,
   TransportModule,
   MediaModule,
-  MailerModule.forRoot(mailerConfig),
-  TypeOrmModule.forRoot(databaseConfig),
   ScheduleModule.register(),
-  StorageModule.forRoot(storageConfig),
+  TypeOrmModule.forRoot(databaseConfig),
   AutomapperModule.forRoot(automapperConfig),
+  MailerModule.forRootAsync({ useFactory: () => mailerConfig }),
+  StorageModule.forRootAsync({ useFactory: () => storageConfig }),
 ];
 
 @Module({
