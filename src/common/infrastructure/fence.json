@@ -1,0 +1,19 @@
+{
+  "tags": [
+    "commonInfrastructure"
+  ],
+  "exports": [
+    {
+      "modules": "*",
+      "accessibleTo": ["commonContext"]
+    },
+    {
+      "modules": "*",
+      "accessibleTo": ["main"]
+    }
+  ],
+  "imports": [
+    "commonApplication",
+    "commonDomain"
+  ]
+}

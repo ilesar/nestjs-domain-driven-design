@@ -1,8 +1,8 @@
 {
   "tags": [
-    "root"
+    "main"
   ],
   "imports": [
-    "kernel"
+    "commonContext"
   ]
 }

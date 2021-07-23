@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from './database/database.module';
-import { ApplicationModule } from '../application/application.module';
+import { ApplicationLayer } from '../application/application.layer';
 import { RestModule } from './admin/rest.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphqlModule } from './graphql/graphql.module';
@@ -47,8 +47,8 @@ const INTEGRATIONS = [
 AdminJS.registerAdapter({ Database, Resource });
 
 @Module({
-  imports: [ApplicationModule, DatabaseModule, ...INTEGRATIONS],
+  imports: [ApplicationLayer, DatabaseModule, ...INTEGRATIONS],
   providers: [],
   exports: [],
 })
-export class InfrastructureModule {}
+export class InfrastructureLayer {}

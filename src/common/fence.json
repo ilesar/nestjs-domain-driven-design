@@ -1,0 +1,21 @@
+{
+  "tags": [
+    "commonContext"
+  ],
+  "exports": [
+    {
+      "modules": "*.bounded-context",
+      "accessibleTo": ["main"]
+    },
+    {
+      "modules": "**/*/dependency-graph.module",
+      "accessibleTo": ["main"]
+    },
+    {
+      "modules": "**/*/rest.module",
+      "accessibleTo": ["main"]
+    }
+  ],
+  "imports": [
+  ]
+}

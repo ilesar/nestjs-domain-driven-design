@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { DomainModule } from '../domain/domain.module';
+import { DomainLayer } from '../domain/domain.layer';
 import { ConfigModule } from '@nestjs/config';
 
 const INTEGRATIONS = [
@@ -9,8 +9,8 @@ const INTEGRATIONS = [
 ];
 
 @Module({
-  imports: [DomainModule, ...INTEGRATIONS],
+  imports: [DomainLayer, ...INTEGRATIONS],
   providers: [],
   exports: [],
 })
-export class ApplicationModule {}
+export class ApplicationLayer {}

@@ -1,14 +1,14 @@
 import { NestFactory } from '@nestjs/core';
-import { KernelModule } from './kernel/kernel.module';
+import { MainModule } from './main.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { WinstonLoggerService } from '@nest-toolbox/winston-logger';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { RestModule } from './context/infrastructure/admin/rest.module';
-import { DependencyGraphModule } from './context/infrastructure/dependency-graph/dependency-graph.module';
+import { RestModule } from './common/infrastructure/admin/rest.module';
+import { DependencyGraphModule } from './common/infrastructure/dependency-graph/dependency-graph.module';
 import * as sourceMapSupport from 'source-map-support';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(KernelModule, {
+  const app = await NestFactory.create<NestExpressApplication>(MainModule, {
     logger: new WinstonLoggerService({
       projectName: 'project',
     }),
@@ -17,7 +17,7 @@ async function bootstrap() {
   sourceMapSupport.install();
 
   if (process.env.APP_ENV === 'dev') {
-    DependencyGraphModule.generateGraph(app, KernelModule.name);
+    DependencyGraphModule.generateGraph(app, MainModule.name);
   }
 
   const config = new DocumentBuilder()
