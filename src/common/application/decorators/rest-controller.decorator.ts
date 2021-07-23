@@ -1,4 +1,8 @@
-import { applyDecorators, Controller } from '@nestjs/common';
+import {
+  applyDecorators,
+  Controller,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 const MAXIMUM_EMOJIS = 3;
@@ -10,23 +14,32 @@ export function RestController(
   let prettyControllerName =
     controllerName.charAt(0).toUpperCase() + controllerName.slice(1);
 
-  if (controllerIcon && stringHasOnlyEmojis(controllerIcon)) {
+  if (!controllerIcon) {
+    return applyDecorators(
+      ApiTags(prettyControllerName),
+      Controller(controllerName),
+    );
+  }
+
+  if (stringHasOnlyEmojis(controllerIcon)) {
     prettyControllerName = `${controllerIcon.slice(
       0,
       MAXIMUM_EMOJIS * 2,
     )} ${prettyControllerName}`;
+
+    return applyDecorators(
+      ApiTags(prettyControllerName),
+      Controller(controllerName),
+    );
   }
 
-  return applyDecorators(
-    ApiTags(prettyControllerName),
-    Controller(controllerName),
+  throw new InternalServerErrorException(
+    'Only emojis are allowed as documentation icons',
   );
 }
 
 function stringHasOnlyEmojis(controllerIcon) {
-  const controllerIconWithoutEmojis = removeEmojis(controllerIcon);
-
-  return controllerIconWithoutEmojis.length === 0;
+  return removeEmojis(controllerIcon).length === 0;
 }
 
 function removeEmojis(controllerIcon) {
