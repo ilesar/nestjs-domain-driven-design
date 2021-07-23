@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { CommonBoundedContext } from './common/common.bounded-context';
+import { CommonBoundedContext } from './_common/common.bounded-context';
 
 @Module({
   imports: [CommonBoundedContext],

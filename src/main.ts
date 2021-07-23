@@ -3,8 +3,8 @@ import { MainModule } from './main.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { WinstonLoggerService } from '@nest-toolbox/winston-logger';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { RestModule } from './common/infrastructure/api/rest/rest.module';
-import { DependencyGraphModule } from './common/infrastructure/dependency-graph/dependency-graph.module';
+import { RestModule } from './_common/infrastructure/api/rest/rest.module';
+import { DependencyGraphModule } from './_common/infrastructure/dependency-graph/dependency-graph.module';
 import * as sourceMapSupport from 'source-map-support';
 
 async function bootstrap() {
