@@ -3,7 +3,7 @@ import { MainModule } from './main.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { WinstonLoggerService } from '@nest-toolbox/winston-logger';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { RestModule } from './common/infrastructure/admin/rest.module';
+import { RestModule } from './common/infrastructure/api/rest/rest.module';
 import { DependencyGraphModule } from './common/infrastructure/dependency-graph/dependency-graph.module';
 import * as sourceMapSupport from 'source-map-support';
 

@@ -9,7 +9,7 @@ const INTEGRATIONS = [
 ];
 
 @Module({
-  imports: [DomainLayer, ...INTEGRATIONS],
+  imports: [...INTEGRATIONS],
   providers: [],
   exports: [],
 })

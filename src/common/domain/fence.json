@@ -5,14 +5,14 @@
   "exports": [
     {
       "modules": "domain.layer",
-      "accessibleTo": ["commonApplication", "commonInfrastructure"]
-    },
-    {
-      "modules": "**/*/*.model.ts",
-      "accessibleTo": ["commonApplication", "commonInfrastructure"]
+      "accessibleTo": ["commonContext"]
     },
     {
       "modules": "**/*/*.service.ts",
+      "accessibleTo": ["commonApplication"]
+    },
+    {
+      "modules": "**/*/*.model.ts",
       "accessibleTo": ["commonApplication", "commonInfrastructure"]
     }
   ],

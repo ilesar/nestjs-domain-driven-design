@@ -4,12 +4,12 @@
   ],
   "exports": [
     {
-      "modules": "*",
-      "accessibleTo": ["commonInfrastructure"]
+      "modules": "**/*/application.layer",
+      "accessibleTo": ["commonContext"]
     },
     {
-      "modules": "*",
-      "accessibleTo": ["commonContext"]
+      "modules": "**/*/*.command",
+      "accessibleTo": ["commonInfrastructure"]
     }
   ],
   "imports": [
