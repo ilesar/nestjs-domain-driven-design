@@ -1,3 +1,3 @@
 export interface SeedInterface {
-  processData(): void;
+  getData(): any;
 }
