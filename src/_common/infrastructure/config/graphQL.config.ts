@@ -1,21 +1,13 @@
 import { GqlModuleAsyncOptions } from '@nestjs/graphql/dist/interfaces/gql-module-options.interface';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TodoItemDto } from '../api/graphql/resources/todo-item/todo-item.dto';
 import { TodoItemEntity } from '../database/entities/todo-item/todo-item.entity';
+import { TodoItemDto } from '../graphql/resources/todo-item/todo-item.dto';
 
 export const graphqlCrudMap = [
   {
     dto: TodoItemDto,
     entity: TodoItemEntity,
-    operations: {
-      create: {
-        create: { one: { disabled: false }, many: { disabled: false } },
-        read: { one: { disabled: false }, many: { disabled: false } },
-        update: { one: { disabled: false }, many: { disabled: false } },
-        delete: { one: { disabled: false }, many: { disabled: false } },
-      },
-    },
   },
 ];
 
