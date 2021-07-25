@@ -8,6 +8,14 @@ export const graphqlCrudMap = [
   {
     dto: TodoItemDto,
     entity: TodoItemEntity,
+    operations: {
+      create: {
+        create: { one: { disabled: false }, many: { disabled: false } },
+        read: { one: { disabled: false }, many: { disabled: false } },
+        update: { one: { disabled: false }, many: { disabled: false } },
+        delete: { one: { disabled: false }, many: { disabled: false } },
+      },
+    },
   },
 ];
 

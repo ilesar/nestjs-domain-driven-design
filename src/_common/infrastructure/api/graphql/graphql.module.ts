@@ -7,7 +7,6 @@ import { graphQLConfig, graphqlCrudMap } from '../../config/graphQL.config';
 
 @Module({
   imports: [
-    // GOAL -> BornfightAPIModule.register(config),
     GraphQLModule.forRootAsync(graphQLConfig),
     NestjsQueryGraphQLModule.forFeature({
       imports: [NestjsQueryTypeOrmModule.forFeature([TodoItemEntity])],
@@ -17,6 +16,7 @@ import { graphQLConfig, graphqlCrudMap } from '../../config/graphQL.config';
             DTOClass: entityItem.dto,
             EntityClass: entityItem.entity,
             guards: [],
+            ...entityItem.operations,
           };
         }),
       ],

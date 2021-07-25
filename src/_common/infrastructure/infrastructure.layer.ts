@@ -26,7 +26,6 @@ AdminJS.registerAdapter({ Database, Resource });
     RestModule,
     MediaModule,
     ScheduleModule.register(),
-    TypeOrmModule.forRoot(databaseConfig),
     AutomapperModule.forRoot(automapperConfig),
     MailerModule.forRootAsync({ useFactory: () => mailerConfig }),
     StorageModule.forRootAsync({ useFactory: () => storageConfig }),

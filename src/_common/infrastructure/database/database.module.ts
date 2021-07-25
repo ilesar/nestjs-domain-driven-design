@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { databaseConfig } from '../config/database.config';
 
 @Module({
-  imports: [
-    // GOAL -> BornfightDatabaseModule.register(config),
-  ],
+  imports: [TypeOrmModule.forRoot(databaseConfig)],
   providers: [],
   exports: [],
 })
