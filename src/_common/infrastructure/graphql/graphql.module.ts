@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql';
 import { NestjsQueryTypeOrmModule } from '@nestjs-query/query-typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
-import { graphQLConfig, graphqlCrudMap } from '../../config/graphQL.config';
+import { graphQLConfig, graphqlCrudMap } from '../config/graphQL.config';
 
 @Module({
   imports: [

@@ -1,15 +1,12 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from './database/database.module';
-import { RestModule } from './api/rest/rest.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { GraphqlModule } from './api/graphql/graphql.module';
+import { GraphqlModule } from './graphql/graphql.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { ScheduleModule } from 'nest-schedule';
 import { StorageModule } from '@codebrew/nestjs-storage';
 import { AutomapperModule } from '@automapper/nestjs';
 import { automapperConfig } from './config/automapper.config';
 import { mailerConfig } from './config/mailer.config';
-import { databaseConfig } from './config/database.config';
 import { storageConfig } from './config/storage.config';
 import { MediaModule } from './media/media.module';
 import { AdminModule } from '@adminjs/nestjs';
@@ -23,7 +20,6 @@ AdminJS.registerAdapter({ Database, Resource });
   imports: [
     DatabaseModule,
     GraphqlModule,
-    RestModule,
     MediaModule,
     ScheduleModule.register(),
     AutomapperModule.forRoot(automapperConfig),
