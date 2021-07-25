@@ -2,12 +2,14 @@ import { GqlModuleAsyncOptions } from '@nestjs/graphql/dist/interfaces/gql-modul
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TodoItemEntity } from '../database/entities/todo-item/todo-item.entity';
-import { TodoItemDto } from '../graphql/resources/todo-item/todo-item.dto';
+import { TodoItemDto } from '../graphql/resources/todo-item/dtos/todo-item.dto';
+import { TodoItemResolver } from '../graphql/resources/todo-item/todo-item.resolver';
 
 export const graphqlCrudMap = [
   {
     dto: TodoItemDto,
     entity: TodoItemEntity,
+    resolver: TodoItemResolver,
   },
 ];
 

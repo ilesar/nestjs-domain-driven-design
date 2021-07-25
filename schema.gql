@@ -15,24 +15,6 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type DeleteManyResponse {
-  """The number of records deleted."""
-  deletedCount: Int!
-}
-
-type TodoItemDeleteResponse {
-  id: Int
-  title: String
-  completed: Boolean
-  created: DateTime
-  updated: DateTime
-}
-
-type UpdateManyResponse {
-  """The number of records updated."""
-  updatedCount: Int!
-}
-
 type TodoItemEdge {
   """The node containing the TodoItem"""
   node: TodoItem!
@@ -66,6 +48,30 @@ type TodoItemConnection {
   edges: [TodoItemEdge!]!
 }
 
+type DeleteManyResponse {
+  """The number of records deleted."""
+  deletedCount: Int!
+}
+
+type TodoItemDeleteResponse {
+  id: Int
+  title: String
+  completed: Boolean
+  created: DateTime
+  updated: DateTime
+}
+
+type UpdateManyResponse {
+  """The number of records updated."""
+  updatedCount: Int!
+}
+
+type TodoItemAggregateGroupBy {
+  id: Int
+  title: String
+  completed: Boolean
+}
+
 type TodoItemCountAggregate {
   id: Int
   title: Int
@@ -96,6 +102,16 @@ type Query {
     id: ID!
   ): TodoItem
   todoItems(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: TodoItemFilter = {}
+
+    """Specify to sort results."""
+    sorting: [TodoItemSort!] = []
+  ): TodoItemConnection!
+  completedTodoItems(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
@@ -200,7 +216,7 @@ type Mutation {
   createManyTodoItems(input: CreateManyTodoItemsInput!): [TodoItem!]!
   updateOneTodoItem(input: UpdateOneTodoItemInput!): TodoItem!
   updateManyTodoItems(input: UpdateManyTodoItemsInput!): UpdateManyResponse!
-  deleteOneTodoItem(input: DeleteOneInput!): TodoItemDeleteResponse!
+  deleteOneTodoItem(input: DeleteOneTodoItemInput!): TodoItemDeleteResponse!
   deleteManyTodoItems(input: DeleteManyTodoItemsInput!): DeleteManyResponse!
 }
 
@@ -254,7 +270,7 @@ input TodoItemUpdateFilter {
   completed: BooleanFieldComparison
 }
 
-input DeleteOneInput {
+input DeleteOneTodoItemInput {
   """The id of the record to delete."""
   id: ID!
 }

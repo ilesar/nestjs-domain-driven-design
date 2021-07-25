@@ -9,23 +9,16 @@ import { graphQLConfig, graphqlCrudMap } from '../config/graphQL.config';
     GraphQLModule.forRootAsync(graphQLConfig),
     NestjsQueryGraphQLModule.forFeature({
       imports: [
-        NestjsQueryTypeOrmModule.forFeature([
-          ...graphqlCrudMap.map((entityItem) => entityItem.entity),
-        ]),
+        NestjsQueryTypeOrmModule.forFeature(
+          graphqlCrudMap.map((entityItem) => entityItem.entity),
+        ),
       ],
-      resolvers: [
-        ...graphqlCrudMap.map((entityItem: any) => {
-          return {
-            DTOClass: entityItem.dto,
-            EntityClass: entityItem.entity,
-            guards: [],
-            ...entityItem.operations,
-          };
-        }),
-      ],
+      dtos: graphqlCrudMap.map((entityItem) => {
+        return { DTOClass: entityItem.dto };
+      }),
     }),
   ],
-  providers: [],
+  providers: graphqlCrudMap.map((entityItem) => entityItem.resolver),
   exports: [],
 })
 export class GraphqlModule {}
