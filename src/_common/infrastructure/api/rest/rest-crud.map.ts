@@ -2,7 +2,13 @@ import { TodoItemEntity } from '../../database/entities/todo-item/todo-item.enti
 import { TodoItemCrudController } from './resources/todo-item/todo-item.crud-controller';
 import { TodoItemCrudService } from './resources/todo-item/todo-item.crud-service';
 
-export const restCrudMap = [
+export interface CrudMapItem {
+  entity: any;
+  controller: any;
+  service: any;
+}
+
+export const restCrudMap: CrudMapItem[] = [
   {
     entity: TodoItemEntity,
     controller: TodoItemCrudController,
