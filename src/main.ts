@@ -2,8 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { MainModule } from './main.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { WinstonLoggerService } from '@nest-toolbox/winston-logger';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { RestModule } from './_common/infrastructure/api/rest/rest.module';
 import { DependencyGraphModule } from './_common/infrastructure/dependency-graph/dependency-graph.module';
 import * as sourceMapSupport from 'source-map-support';
 
@@ -19,18 +17,6 @@ async function bootstrap() {
   if (process.env.APP_ENV === 'dev') {
     DependencyGraphModule.generateGraph(app, MainModule.name);
   }
-
-  const config = new DocumentBuilder()
-    .setTitle(`${process.env.PROJECT_NAME}`)
-    .setDescription(
-      `REST API Documentation for the project ${process.env.PROJECT_NAME}<br><br><br>Are you looking for the <a href="/graphql" target="_blank">GraphQL documentation</a>?`,
-    )
-    .setVersion('1.0')
-    .build();
-  const document = SwaggerModule.createDocument(app, config, {
-    include: [RestModule],
-  });
-  SwaggerModule.setup('api', app, document);
 
   await app.listen(3000);
 }
