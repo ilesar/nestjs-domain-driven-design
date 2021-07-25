@@ -16,10 +16,10 @@ export const databaseConfig: ConnectionOptions = {
     __dirname +
       '/../../../**/infrastructure/database/entities/**/*.entity{.ts,.js}',
   ],
-  synchronize: process.env.production !== 'true',
+  synchronize: false,
   namingStrategy: new SnakeNamingStrategy(),
   migrations: [
-    __dirname + '/../../infrastructure/database/migrations/*{.ts,.js}',
+    __dirname + '/../../../**/infrastructure/database/migrations/*{.ts,.js}',
   ],
   migrationsTableName: 'migrations',
   migrationsRun: false,
