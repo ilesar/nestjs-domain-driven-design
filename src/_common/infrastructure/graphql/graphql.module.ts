@@ -14,7 +14,7 @@ import { graphQLConfig, graphqlCrudMap } from '../config/graphQL.config';
         ]),
       ],
       resolvers: [
-        ...graphqlCrudMap.map((entityItem) => {
+        ...graphqlCrudMap.map((entityItem: any) => {
           return {
             DTOClass: entityItem.dto,
             EntityClass: entityItem.entity,
