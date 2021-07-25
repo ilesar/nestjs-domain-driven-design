@@ -13,7 +13,8 @@ export const databaseConfig: ConnectionOptions = {
   port: parseInt(process.env.DATABASE_PORT, 10),
   logging: process.env.DATABASE_LOGGING === 'true',
   entities: [
-    __dirname + '/../../infrastructure/database/entities/**/*.entity{.ts,.js}',
+    __dirname +
+      '/../../../**/infrastructure/database/entities/**/*.entity{.ts,.js}',
   ],
   synchronize: process.env.production !== 'true',
   namingStrategy: new SnakeNamingStrategy(),
