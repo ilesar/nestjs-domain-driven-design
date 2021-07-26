@@ -38,9 +38,6 @@
     "@adminjs/express": "^4.0.0",
     "@adminjs/nestjs": "^2.0.0",
     "@adminjs/typeorm": "^2.0.0",
-    "@automapper/classes": "^3.0.10",
-    "@automapper/core": "^3.0.10",
-    "@automapper/nestjs": "^3.0.10",
     "@codebrew/nestjs-storage": "^0.1.4",
     "@nest-toolbox/winston-logger": "^1.3.1",
     "@nestjs-architects/typed-cqrs": "^0.1.1",
@@ -51,6 +48,7 @@
     "@nestjs/common": "^7.6.12",
     "@nestjs/config": "^0.6.3",
     "@nestjs/core": "^7.5.1",
+    "@nestjs/cqrs": "^8.0.0",
     "@nestjs/graphql": "^7.9.8",
     "@nestjs/jwt": "^7.2.0",
     "@nestjs/microservices": "^8.0.4",
@@ -98,7 +96,6 @@
     "typeorm-naming-strategies": "^2.0.0"
   },
   "devDependencies": {
-    "@automapper/types": "^3.0.10",
     "@nestjs/cli": "^7.5.1",
     "@nestjs/schematics": "^7.1.3",
     "@nestjs/testing": "^7.6.13",
@@ -111,6 +108,7 @@
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
+    "bfjs-nest-schematics": "file:../bfjs-nest-schematics/",
     "eslint": "^7.12.1",
     "eslint-config-prettier": "7.2.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -123,8 +121,7 @@
     "ts-loader": "^8.0.8",
     "tsconfig-paths": "^3.9.0",
     "typeorm-fixtures-cli": "^1.9.1",
-    "typescript": "^4.0.5",
-    "bfjs-nest-schematics": "file:../bfjs-nest-schematics/"
+    "typescript": "^4.0.5"
   },
   "jest": {
     "moduleFileExtensions": [
