@@ -3,9 +3,11 @@ import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql';
 import { NestjsQueryTypeOrmModule } from '@nestjs-query/query-typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { graphQLConfig, graphqlCrudMap } from '../config/graphQL.config';
+import { CqrsModule } from '@nestjs/cqrs';
 
 @Module({
   imports: [
+    CqrsModule,
     GraphQLModule.forRootAsync(graphQLConfig),
     NestjsQueryGraphQLModule.forFeature({
       imports: [
