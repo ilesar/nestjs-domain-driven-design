@@ -1,16 +1,17 @@
 import { Module } from '@nestjs/common';
+import { CompleteTodoItemHandler } from './handlers/CompleteTodoItemHandler';
 import { DomainLayer } from '../domain/domain.layer';
-import { ConfigModule } from '@nestjs/config';
-
-const INTEGRATIONS = [
-  ConfigModule.forRoot({
-    isGlobal: true,
-  }),
-];
+import { TodoItemTypeormRepository } from '../infrastructure/database/repositories/todo-item-typeorm.repository';
 
 @Module({
-  imports: [...INTEGRATIONS],
-  providers: [],
+  imports: [DomainLayer],
+  providers: [
+    CompleteTodoItemHandler,
+    {
+      provide: 'TodoItemRepositoryImplementation',
+      useClass: TodoItemTypeormRepository,
+    },
+  ],
   exports: [],
 })
 export class ApplicationLayer {}

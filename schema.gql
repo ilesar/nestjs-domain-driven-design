@@ -218,6 +218,7 @@ type Mutation {
   updateManyTodoItems(input: UpdateManyTodoItemsInput!): UpdateManyResponse!
   deleteOneTodoItem(input: DeleteOneTodoItemInput!): TodoItemDeleteResponse!
   deleteManyTodoItems(input: DeleteManyTodoItemsInput!): DeleteManyResponse!
+  completeOneTodoItem(todoItemId: Float!): TodoItem!
 }
 
 input CreateOneTodoItemInput {
